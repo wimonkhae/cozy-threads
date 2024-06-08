@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --base: 24px;
+  --font-body: 'Jost', sans-serif;
+  --font-jost: 'Jost', sans-serif;
+
+  --gutter-h: 180px;
+  --block-padding: 120px;
+
+  --color-extralight-green: rgb(133, 165, 143);
+  --color-light-green: rgb(102, 120, 116);
+  --color-dark-green: rgb(65, 88, 84);
+  --color-highlight-green: rgb(181, 208, 74);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter-h: 144px;
+    --block-padding: 96px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter-h: 24px;
+    --block-padding: 60px;
+  }
+}
+
+
+
+html {
+  background: var(--theme-bg);
+  -webkit-font-smoothing: antialiased;
+  opacity: 1;
+
+  &[data-theme=dark],
+  &[data-theme=light] {
+    opacity: initial;
+  }
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-jost);
+  margin: 0;
+  padding: 0;
+  color: var(--color-dark-green);
+
+  display: flex;
+  flex-flow: column;
+
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+
+.bg_color {
+  background-color: var(--color-dark-green);
+}
+
+.bg_light_green {
+  background-color: var(--color-light-green);
+}
+
+.bg_extralight_green {
+  background-color: var(--color-extralight-green);
+}
+.highlight_text {
+  color: var(--color-highlight-green)
+}
+
