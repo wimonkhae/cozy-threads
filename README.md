@@ -81,3 +81,4 @@ initial ESLinte configuration
 
 # unlink Git
 `git remote rm origin`
+`git remote add origin https://github.com/wimonkhae/ecommerce-demo.git`
