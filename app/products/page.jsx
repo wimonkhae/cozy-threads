@@ -1,6 +1,5 @@
 import ProductCard from "@components/ProductCard";
 import { getAllProductData } from "@utils/stripe";
-import Image from "next/image";
 
 export default async function Products() {
   const productData = await getAllProductData();

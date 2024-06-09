@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { CartContext } from "@app/layout";
-import { useContext, useEffect } from "react";
+import { useContext, Suspense} from "react";
 
 
 export default function ProductCard({ product }) {
@@ -74,10 +74,12 @@ export default function ProductCard({ product }) {
             <p className="text-sm">${product.price}</p>
           </div>
           <div className="flex flex-col items-end">
+          <Suspense fallback={<div>Loading...</div>}>
             <button className="bg_light_green hover:bg-green-900 text-white font-bold py-2 px-3 rounded-[10px]"
               onClick={addToCart}>
               Add to Cart
             </button>
+          </Suspense>
 
           </div>
         </div>

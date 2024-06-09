@@ -2,11 +2,9 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '@app/layout';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import Image from "next/image";
 import { loadStripe } from '@stripe/stripe-js';
-
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 

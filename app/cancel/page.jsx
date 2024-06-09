@@ -1,14 +1,10 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
 import CartSummary from '@components/CartSummary';
 import Link from 'next/link';
 
-
 const Cancel = () => {
-  const searchParams = useSearchParams();
-  const session_id = searchParams.get('session_id');
- 
+
   return (
     <section className="py-10 px-14">
 

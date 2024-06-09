@@ -1,9 +1,7 @@
 // "use client";
 
-// import { useContext, useState } from 'react';
-import { CartContext } from '@app/layout';
 import CartSummary from '@components/CartSummary';
-import HostedCheckout from '@components/HostedCheckout';
+
 
 export default function Cart() {
 

@@ -1,16 +1,13 @@
 "use client";
 
-import { useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import OrderSummary from '@components/OrderSummary';
-import Link from 'next/link';
+import Link from "next/link";
 import { CartContext } from '@app/layout';
 
-
 const Success = () => {
-  const searchParams = useSearchParams();
-  const session_id = searchParams.get('session_id');
   const [isOrderSaved, setIsOrderSaved] = useState(false);
+  const [session_id, setSession_id] = useState(null);
   const { setCartItemCount } = useContext(CartContext);
 
   const sleep = (ms) => {
@@ -20,6 +17,13 @@ const Success = () => {
   let didCancel = false;
 
   useEffect(() => {
+    // Retrieve the session_id from the URL
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      setSession_id(urlParams.get('session_id'));
+
+    }
+
     const saveOrder = async () => {
       if (!didCancel && !isOrderSaved) {
         try {
@@ -76,10 +80,12 @@ const Success = () => {
       </h4>
 
       <div className="flex items-center">
-        <OrderSummary
-          session_id={session_id}
-          isOrderSaved={isOrderSaved}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <OrderSummary
+            session_id={session_id}
+            isOrderSaved={isOrderSaved}
+          />
+        </Suspense>
       </div>
 
       <div className="mt-8 flex items-center justify-between gap-1">
