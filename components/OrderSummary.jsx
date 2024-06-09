@@ -42,9 +42,6 @@ const OrderSummary = () => {
     fetchOrderDetails();
   }, [session_id]);
 
-  
-
- console.log(order);
   if (error) {
     return <div className="mt-4">Error: {error}</div>;
   }
@@ -71,13 +68,7 @@ const OrderSummary = () => {
         <OrderItems data={order} />
         <p className="text-base font-bold mt-2">Total Amount: {order.amount}</p>
       </div>
-      
 
-      <div className="mt-8 flex items-center justify-between gap-1">
-          <Link href="/" className="font-bold hover:text-gray-300">
-            <p className="mt-1 flex flex-col items-center">Restart Demo?</p>
-          </Link>
-        </div>
     </section>
   );
 };

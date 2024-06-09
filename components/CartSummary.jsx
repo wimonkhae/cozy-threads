@@ -53,10 +53,25 @@ const CartSummary = () => {
     }
   };
 
-  /**need to set context becasue Next.js version 13 components are server-rendered by default. 
-   * Components are pre-rendered into HTML on the server before being sent to the client. 
-   * The window object is not available on the server
-   * */
+  const handleRemoveItem = (itemId) => {
+    if (typeof window !== 'undefined') {
+      const localCart = JSON.parse(localStorage.getItem('cart'));
+      const cartItemCount = JSON.parse(localStorage.getItem('cartItemCount'));
+      const totalAmount = JSON.parse(localStorage.getItem('totalAmount'));
+
+      const updatedCart = localCart.filter((item) => item.id !== itemId);
+      const removedItem = localCart.find((item) => item.id === itemId);
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      localStorage.setItem('cartItemCount', cartItemCount - removedItem.quantity);
+      localStorage.setItem('totalAmount', totalAmount - (removedItem.price * removedItem.quantity));
+
+      setCart(updatedCart);
+      setCartItemCount(cartItemCount - removedItem.quantity);
+      setTotalAmount(totalAmount - (removedItem.price * removedItem.quantity));
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const localCart = JSON.parse(localStorage.getItem('cart'))
@@ -123,10 +138,8 @@ const CartSummary = () => {
 
   return (
     <section >
-      {cart ? (
+      {cart && totalAmount > 0 ? (
         <>
-          {/* <p className="mt-4 font-bold">Total items in cart: {cartItemCount}</p> */}
-     
           <ul className="space-y-4 max-w-lg mx-auto flex flex-wrap">
             {[...cart].map((item) => (
               <li key={item.id} className="bg-white p-4 w-full rounded-md shadow-md flex items-center justify-between">
@@ -147,7 +160,7 @@ const CartSummary = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center ml-20 space-x-1 ">
                 <p className="text-gray-500 flex pr-1"> Qty: </p>
                 <input
                     type="number"
@@ -158,8 +171,21 @@ const CartSummary = () => {
                     }
                     className="w-16 rounded-md border border-gray-300 px-2 py-1 text-sm"
                   />
-                  {/* <span className="text-sm">x {item.quantity}</span> */}
                 </div>
+                
+                <button
+                  onClick={() => handleRemoveItem(item.id)}
+                  className="bg-transparent hover:bg-gray-100 p-2 rounded-full"
+                >
+                  <Image
+                    src="/icons/delete.svg"
+                    alt="Remove item"
+                    width={20}
+                    height={20}
+                    className="text-red-500 hover:text-red-600 cursor-pointer"
+                  />
+                </button>
+
               </li>
             ))}
           </ul>

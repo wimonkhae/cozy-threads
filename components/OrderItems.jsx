@@ -7,7 +7,7 @@ const OrderItems = ({ data }) => {
 
   const [lineItems, setLineItems] = useState([]);
   const [error, setError] = useState(null);
-  console.log();
+ 
 
   useEffect(() => {
     const getCartProductDetails = async () => {
@@ -15,7 +15,6 @@ const OrderItems = ({ data }) => {
         const cart = JSON.parse(data.line_items.cart);
         const cartItemCount = cart.line_items.length;
         const itemDetails = [];
-        console.log("item" ,cart);
 
         for (let i = 0; i < cartItemCount; i++) {
           const itemPrice = cart.line_items[i].price;
@@ -43,7 +42,6 @@ const OrderItems = ({ data }) => {
 
     getCartProductDetails();
 
-    
   }, [data]);
 
 
@@ -67,28 +65,6 @@ const OrderItems = ({ data }) => {
                 { label: 'Subtotal $', accessor: 'subTotal' },
             ]}
         />
-
-        {/* <table className="w-full">
-        <thead>
-          <tr className="bg_color text-white">
-            <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">Quantity</th>
-            <th className="px-4 py-2">Price</th>
-            <th className="px-4 py-2">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {lineItems.map((item, index) => (
-            <tr key={index} className={`border-b ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
-              <td className="px-4 py-2">{item.product_name}</td>
-              <td className="px-4 py-2">{item.quantity}</td>
-              <td className="px-4 py-2">${item.amount}</td>
-              <td className="px-4 py-2">${(item.amount * item.quantity).toFixed(2)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-     
     </div>
   );
 };

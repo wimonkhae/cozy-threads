@@ -1,5 +1,3 @@
-// import "@styles/globals.css";
-import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
@@ -8,7 +6,7 @@ const Hero = () => {
       <div
         className="bg-[var(--color-dark-green)] w-full max-h-[884px] max-w-[1560px] flex items-center bg-cover bg-[revert] bg-no-repeat sm:bg-cover sm:bg-center"
         style={{
-          backgroundImage: `url('https://kater-ecommerce.s3.eu-west-1.amazonaws.com/ethical-sourcing.jpg')`,
+          backgroundImage: `url('/images/hero.jpeg')`
         }}
       >
         <div className="py-10 px-14 flex flex-col justify-center p-[15%_var(--gutter-h)] w-full md:p-[10%_30px] sm:p-[50px_30px]">

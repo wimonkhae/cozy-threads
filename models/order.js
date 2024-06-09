@@ -23,7 +23,7 @@ const OrderSchema = new Schema({
     paymentIntent: {
         type: String, 
         unique: [true, 'PaymentIntent ID already exists'],
-        required: true,
+        required: [true, 'PaymentIntent ID is required'],
     },
     status: {
         type: String,
@@ -34,7 +34,7 @@ const OrderSchema = new Schema({
         // required: true,
     },
     totalAmount: { 
-        type: Number, 
+        type: String, 
         // required: true 
     },
     createdAt: { 

@@ -52,8 +52,6 @@ export default function ProductCard({ product }) {
     }
   };
 
-
-
   return (
     <div className="border p-6 flex flex-col items-center">
       <div className="w-[180px] mb-4">

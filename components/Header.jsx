@@ -27,12 +27,10 @@ const Header = () => {
          setCusId(session.user.cusId);
 
          if(!(localStorage.getItem("cusId"))){
-          console.log("user id set to stroage", session.user);
           localStorage.setItem("cusId", session.user.cusId)
          }
 
          if(!(localStorage.getItem("userId"))){
-          console.log("user id set to stroage", session.user);
           localStorage.setItem("userId", session.user.id)
          }      
       }
@@ -47,13 +45,13 @@ const Header = () => {
     <nav className="flex justify-between w-full py-10 px-10">
 
           <Link href="/" className="pt-3 flex flex-col items-start ml-4">
-            <Image src="../logo-green.svg" alt="logo" width={170} height={50} />
+            <Image src="/logo-green.svg" alt="logo" width={170} height={50} />
           </Link>
          
         <div className="flex flex-col items-end mr-4 h-full justify-center">
           <div className="flex gap-3 md:gap-6">
             <Link className="pt-3 text-lg" href='/products'>
-              Products
+              Shop
             </Link>
             
             <Link className="pt-3 text-lg" href='/cart'>
@@ -73,10 +71,10 @@ const Header = () => {
               ))}
               </>
               {session?.user && 
-                <Link href="/account">
+                <Link href={`/account/${session?.user?.cusId}`}>
                  <Image
                  className="py-2 px-2"
-                   src="../icons/profile.svg" alt="account" width={50} height={50} />
+                   src="/icons/profile.svg" alt="account" width={50} height={50} />
               </Link> }
               
           </div>

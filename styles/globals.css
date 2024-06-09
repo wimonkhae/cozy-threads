@@ -30,8 +30,6 @@
   }
 }
 
-
-
 html {
   background: var(--theme-bg);
   -webkit-font-smoothing: antialiased;
@@ -63,7 +61,6 @@ body {
 .main {
   flex: 1 1 auto;
 }
-
 
 .bg_color {
   background-color: var(--color-dark-green);

@@ -8,11 +8,7 @@ export async function POST(request) {
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
-      automatic_tax: { enabled: true },
       customer: reqBody?.customer,
-      customer_update: {
-        address: "auto",
-      },
       line_items: reqBody.line_items,
       metadata: { cart: JSON.stringify(reqBody)},
       payment_intent_data: {
@@ -55,7 +51,6 @@ export async function GET(request) {
         expand:['payment_intent', 'line_items', 'payment_intent.latest_charge']
       });
 
-    console.log(session);
 
     return new Response(
       
@@ -66,7 +61,7 @@ export async function GET(request) {
         line_items: session.payment_intent.metadata,
         recieptUrl: session.payment_intent.latest_charge.receipt_url,
         customer: session.payment_intent.customer || 'Guest',
-        created: new Date(session.created * 1000).toLocaleString()
+        created: new Date(session.created * 1000).toDateString()
       })
     );
   } catch (err) {

@@ -20,7 +20,7 @@ export default function HostedCheckout() {
       acc.push({ price: item.price_id, quantity: 1 });
     }
     return acc;
-  }, [])
+  }, []);
 
   const handleCheckout = useCallback(async () => {
     try {
