@@ -5,7 +5,7 @@ Cozy Threads is an basic e-Commerce web application showcasing Stripe Payment fu
 
 The demo application is live at [https://ecommerce-demo-ct.vercel.app](https://ecommerce-demo-ct.vercel)
 
-![Homepage]()
+![Homepage](/public/images/Cozy_Threads.png)
 
 
 ## Features
@@ -22,6 +22,11 @@ Clone the repo and install dependencies using npm or yarn.
 $ git clone https://github.com/wimonkhae/ecommerce-demo.git
 
 $ npm install
+```
+### Configuring Environment Variables
+
+```bash
+cp .env.example .env
 ```
 
 
