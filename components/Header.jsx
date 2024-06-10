@@ -2,44 +2,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useContext } from 'react';
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { CartContext } from '@app/layout';
 
 const Header = () => {
-  const {data : session } = useSession();
-  const { setCusId, cartItemCount, setCartItemCount } = useContext(CartContext);
+  const { cusId, setCusId, cartItemCount, setCartItemCount } = useContext(CartContext);
 
-  const [ providers, setProviders ] = useState(null);
 
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-
-      setProviders(response)
-    }
-
-    setUpProviders();
-  }, [])
 
     // Add a null check for session.user
     useEffect(() => {
-      if (session?.user?.cusId) {
-         setCusId(session.user.cusId);
-
-         if(!(localStorage.getItem("cusId"))){
-          localStorage.setItem("cusId", session.user.cusId)
-         }
-
-         if(!(localStorage.getItem("userId"))){
-          localStorage.setItem("userId", session.user.id)
-         }      
-      }
-
       if (typeof window !== 'undefined') {  
+        const cus_id = localStorage.getItem("cusId")
+        if (cus_id) setCusId(cus_id);
+        if (!cus_id) setCusId(null)
         setCartItemCount(localStorage.getItem("cartItemCount"))
       }
-
-    }, [session, setCusId, cartItemCount]);
+      
+    }, [setCusId, cartItemCount]);
 
   return (
     <nav className="flex justify-between w-full py-10 px-10">
@@ -59,19 +38,18 @@ const Header = () => {
             </Link>
              
             <>
-              {!session && providers && Object.values(providers).map((provider) => (
+            {!cusId && (
+              <Link href="/login">
                 <button
-                className="bg_color :bg-lime-950 text-white font-bold mt-1  py-2 px-4 rounded-[10px] transition-colors duration-300"
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
+                  className="bg_color hover:bg-lime-950 text-white font-bold mt-1 py-2 px-4 rounded-[10px] transition-colors duration-300"
                 >
                   Log In
                 </button>
-              ))}
+              </Link>
+            )}
               </>
-              {session?.user && 
-                <Link href={`/account/${session?.user?.cusId}`}>
+              {cusId && 
+                <Link href={`/account/${cusId}`}>
                  <Image
                  className="py-2 px-2"
                    src="/icons/profile.svg" alt="account" width={50} height={50} />

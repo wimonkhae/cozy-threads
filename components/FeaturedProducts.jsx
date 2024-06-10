@@ -40,7 +40,7 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="w-full flex-center flex-col">
+    <section className="py-10 px-14">
       <div className="flex items-center space-x-2 mb-6">
         <h3 className="text-xl font-bold pr-2">Featured Products</h3>
         <Link

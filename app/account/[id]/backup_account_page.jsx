@@ -11,16 +11,19 @@ const Account = ({ params }) => {
   const [ providers, setProviders ] = useState(null);
   const [ localUser, setLocalUser ] = useState(null)
 
-  useEffect(() =>{
+  useEffect(() => {
+    const setUpProviders = async () => {
+      const response = await getProviders();
+      
+      setProviders(response)
 
-    if (typeof window !== 'undefined') { 
-
-      const localStorageUser = JSON.parse(localStorage.getItem('user'))
-      localStorageUser.name = localStorage.getItem('user_name')
-      setLocalUser(localStorageUser)
+      const localStorageUser = localStorage.getItem('user')
+      console.log(localStorageUser);
+      // setLocalUser(localStorageUser)
     }
 
-  },[])
+    setUpProviders();
+  }, [])
 
   console.log("log local", localUser);
 
@@ -30,13 +33,10 @@ const Account = ({ params }) => {
       localStorage.removeItem('cusId');
     }
     signOut();
-    window.location.href = "/";
   };
 
-  const user = localUser
-  console.log(localUser);
 
-  if (!localUser) {
+  if (!session && !localUser) {
     return (
       <section className="py-10 px-14">
         <h3 className="text-3xl font-bold pr-2">My Account</h3>
@@ -47,20 +47,35 @@ const Account = ({ params }) => {
           />
           <Fragment>
             {'Please '}
+            {providers && Object.values(providers).map((provider) => (
               <Link
                 className="highlight_text text-lg hover:text-green-900"
-                href="/login" 
+                href="" 
+                onClick={() => signIn(provider.id)}
               >
                 log in or sign up with
               </Link>
-  
+            ))}
+            
             {` to continue.`}
           </Fragment>
+          {!session && providers && Object.values(providers).map((provider) => (
+            <button
+              className="flex hover:bg-gray-100 font-bold mt-1  py-2 px-4 rounded-[10px] border  transition-colors duration-300"
+              type="button"
+              key={provider.name}
+              onClick={() => signIn(provider.id)}
+            >
+              <Image src='/icons/google.png' alt="Google Logo" width={24} height={24} className="mr-2" />
+              Log In
+            </button>
+          ))}
+ 
         </div>
       </section>
     )
   }
-  if (localUser) {
+  if (session || localUser) {
     return (
         <section className="py-10 px-14">
           <h3 className="text-3xl font-bold pr-2">My Account</h3>
@@ -72,8 +87,8 @@ const Account = ({ params }) => {
     
           <div className="ml-4 mb-4">
             <h4 className="font-bold mb-2">Account Information</h4>
-            <p>Username: {localUser.username}</p>
-            <p>Email: {localUser.email}</p>
+            <p>Username: {session.user.name}</p>
+            <p>Email: {session.user.email}</p>
           </div>
       
           <Link href={`/account/${params.id}/orders`}>
