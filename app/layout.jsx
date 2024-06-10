@@ -3,8 +3,7 @@
 import "@styles/globals.css";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
-import Provider from "@components/Provider"
-import { Metadata } from 'next'
+import Provider from "@components/Provider";
 
 import { useState, createContext, useCallback, useEffect } from "react";
 
@@ -14,14 +13,19 @@ export const CartContext = createContext({
   cusId: null,
   totalAmount: null,
   cartItemCount: null,
+  productData: null,
+  setProductData: () => {},
+  featuredProducts: null,
+  setFeaturedProducts: () => {},
 });
 
 export default function RootLayout({ children }) {
   const [cusId, setCusId] = useState([]);
-  const [cart, setCart, clearCart] = useState([]);
+  const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [cartItemCount, setCartItemCount] = useState(0);
-
+  const [productData, setProductData] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
 
   return (
     <html lang="en">
@@ -31,13 +35,21 @@ export default function RootLayout({ children }) {
             value={{
               cart,
               setCart,
-              clearCart,
+              clearCart: () => {
+                setCart([]);
+                setTotalAmount(0);
+                setCartItemCount(0);
+              },
               cusId,
               setCusId,
               totalAmount,
               setTotalAmount,
               cartItemCount,
-              setCartItemCount
+              setCartItemCount,
+              productData,
+              setProductData,
+              featuredProducts,
+              setFeaturedProducts,
             }}
           >
             <Header />

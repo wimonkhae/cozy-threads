@@ -67,6 +67,9 @@ This project utilize NextAuth with Google Providers. This is to enable quick sig
 1. set your environment variable. This could be done by uploading .env file to vercel under project setting > Environment Variables
 2. [Ignore build steps](https://vercel.com/guides/how-do-i-use-the-ignored-build-step-field-on-vercel) by adding below command to Build Command under project setting > General > Build & Development Settings
 `if [ "$VERCEL_ENV" == "production" ]; then exit 1; else exit 0; fi`
+3. once deploy, update NEXTAUTH_URL and NEXTAUTH_URL_INTERNAL within the environment variable in your Vercel project
+4. update callback URL in [google cloud](https://console.cloud.google.com/) project, under 'Authorize Javascript origins', add the deployed URL (no trailing slash at the end of the URL) and add the same URL with trailing`/api/auth/callback/google` to the "Aurthorized redirect URIs" 
+    + Example: https://{vercel-project-name}.vercel.app/api/auth/callback/google
 
 ## Extra tool
 Install Prettier

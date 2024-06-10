@@ -4,7 +4,11 @@ const nextConfig = {
     esmExternals: true,
   },
   images: {
-    domains: ['files.stripe.com'],
+    remotePatterns: [
+      {
+      hostname: 'files.stripe.com',
+      }
+    ],
   },
   // metadata: {
   //   title: "Cozy Threads",

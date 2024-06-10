@@ -8,7 +8,7 @@ import { CartContext } from '@app/layout';
 const Success = () => {
   const [isOrderSaved, setIsOrderSaved] = useState(false);
   const [session_id, setSession_id] = useState(null);
-  const { setCartItemCount } = useContext(CartContext);
+  const { setCartItemCount, clearCart } = useContext(CartContext);
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -48,11 +48,10 @@ const Success = () => {
 
           if (response.ok) {
             setIsOrderSaved(true);
-            console.log('Order saved successfully', isOrderSaved);
             // clear cart after save to DB
             if (typeof window !== 'undefined') {
               localStorage.clear();
-              setCartItemCount()
+              clearCart();
             }
           } else {
             const errorData = await response.json();
@@ -68,8 +67,8 @@ const Success = () => {
 
     return () => {
       didCancel = true;
-      console.log('Component unmounted', didCancel);
     };
+
   }, [isOrderSaved]);
 
   return (
