@@ -40,7 +40,7 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="py-10 px-14">
+    <section className="w-full flex-center flex-col">
       <div className="flex items-center space-x-2 mb-6">
         <h3 className="text-xl font-bold pr-2">Featured Products</h3>
         <Link
@@ -53,7 +53,7 @@ export default function FeaturedProducts() {
           </button>
         </Link>
       </div>
-      <div className="container max-w-[1560px] w-full">
+      <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {productData.map((product) => (
             <ProductCard key={product.id} product={product} />

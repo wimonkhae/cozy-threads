@@ -1,10 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Cozy Threads e-Commerce Web Application
+Cozy Threads is an basic e-Commerce web application showcasing Stripe Payment functionalities. Customers will be able to browse product catelogue on Cozy Threads e-Commerce website, add and remove products from checkout cart, securely make payment with Stripe Checkout.
 
+The demo application is live at [https://ecommerce-demo-ct.vercel.app](https://ecommerce-demo-ct.vercel)
+
+![Homepage]()
+
+
+## Features
+
+
+## Deploying Locally
+
+Below is the instruction to deploy this application locally and running on [localhost:3000](http://localhost:3000/)
+
+### Getting Started
+
+Clone the repo and install dependencies using npm or yarn.
 ```bash
+$ git clone https://github.com/wimonkhae/ecommerce-demo.git
+
+$ npm install
+```
+
+
+Start the application 
 npm run dev
 # or
 yarn dev
@@ -14,11 +35,19 @@ pnpm dev
 bun dev
 ```
 
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+
+
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Integration
 
 ## Learn More
 
@@ -85,3 +114,18 @@ initial ESLinte configuration
 # unlink Git
 `git remote rm origin`
 `git remote add origin https://github.com/wimonkhae/ecommerce-demo.git`
+
+# nvm 
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+
+`ll ~/.nvm/`
+`cd /opt/homebrew/Cellar/node && ll .`  node versions installed
+`brew install nvm`
+should be in ~/.bashrc
+```export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+`source ~/.bashrc`
+`nvm` should work 
+`nvm install 18.17.0`
