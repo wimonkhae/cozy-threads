@@ -108,7 +108,7 @@ Deploying on Vercel.
 
 
 ### Contributing
-<span style="color:yellow">##### *TODO:* </span>
+##### *TODO:* 
 [ ] Create contributing instruction
 
 
