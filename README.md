@@ -19,8 +19,9 @@ Source Code: [Github](https://github.com/wimonkhae/cozy-threads)
    1. [Integrating with your own MongoDB Atlas](#integrating-with-your-own-mongodb-atlas)
    2. [Integrating with your own google cloud project](#integrating-with-your-own-google-cloud-project)
 5. [Deployment](#deployment)
-6. [Contributing](#contributing)
-7. [Roadmap](#roadmap)
+6. [Testing](#Testing)
+7. [Contributing](#contributing)
+8. [Roadmap](#roadmap)
 
 
 ## Functionalities and Features
@@ -101,9 +102,17 @@ Deploying on Vercel.
 4. update callback URL in [google cloud](https://console.cloud.google.com/) project, under 'Authorize Javascript origins', add the deployed URL (no trailing slash at the end of the URL) and add the same URL with trailing`/api/auth/callback/google` to the "Aurthorized redirect URIs" 
     + For example: `https://<vercel-project-name>.vercel.app/api/auth/callback/google`
 
+### Testing
+##### *TODO:* 
+[ ] Create automate test scripts
+
 
 ### Contributing
-*TODO*
+##### *TODO:* 
+[ ] Create contributing instruction
+
 
 ### Roadmap
-*TODO*
+##### *TODO:* 
+[ ] Create demo roadmap & planning
+
