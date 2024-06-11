@@ -14,6 +14,7 @@
   --color-light-green: rgb(102, 120, 116);
   --color-dark-green: rgb(65, 88, 84);
   --color-highlight-green: rgb(181, 208, 74);
+  --color-light-gray: rgb(246, 249, 252)
 }
 
 @media (min-width: 1024px) {
@@ -88,4 +89,8 @@ body {
 .login {
   margin: auto;
   width: 200px;
+}
+
+.cart_bg {
+  background-color: var(--color-light-gray);
 }

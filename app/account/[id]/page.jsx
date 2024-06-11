@@ -72,15 +72,15 @@ const Account = ({ params }) => {
     )
   } else {
     return (
-      <section className="py-10 px-14">
+      <section className="py-10 px-14 max-w-[100%] text-center mb-2">
         <h3 className="text-3xl font-bold pr-2">My Account</h3>
         <div className="mt-10 px-2">
           <Image
-            className="mb-4 ml-4"
+            className="text-transparent mx-auto"
             src="../icons/profile.svg" alt="account" width={80} height={80} 
           />
 
-        <div className="ml-4 mb-4">
+        <div className="ml-4 my-4">
           <h4 className="font-bold mb-2">Account Information</h4>
           <p>Username: {localUser ? localUser?.username : session?.user?.name}</p>
              

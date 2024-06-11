@@ -136,13 +136,13 @@ const CartSummary = () => {
   }
 
   return (
-    <section >
+    <section className="mx-auto ">
       {cart && totalAmount > 0 ? (
         <>
-          <ul className="space-y-4 max-w-lg mx-auto flex flex-wrap">
+          <ul className="space-y-4 mx-auto flex flex-wrap">
             {[...cart].map((item) => (
               <li key={item.id} className="bg-white p-4 w-full rounded-md shadow-md flex items-center justify-between">
-                <div className="flex items-center space-x-4 w-ful ">
+                <div className="flex items-center space-x-4 w-full ">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -179,8 +179,8 @@ const CartSummary = () => {
                   <Image
                     src="/icons/delete.svg"
                     alt="Remove item"
-                    width={20}
-                    height={20}
+                    width={38}
+                    height={38}
                     className="text-red-500 hover:text-red-600 cursor-pointer"
                   />
                 </button>
@@ -188,11 +188,11 @@ const CartSummary = () => {
               </li>
             ))}
           </ul>
-          <p className="mt-4 font-bold">Total amount: ${totalAmount.toFixed(2)}</p>
+          <p className="mt-4 text-lg font-bold">Total amount: ${totalAmount.toFixed(2)}</p>
           {cart && (
             <button
               onClick={onProceedToCheckout}
-              className="bg_light_green hover:bg-green-900 mt-4 rounded-md bg-blue-500 py-2 px-4 text-white hover:bg-blue-600"
+              className="bg_light_green hover:bg-green-900 mt-4 rounded-md py-2 px-4 text-white float-right"
             >
               Proceed to Checkout
             </button>
