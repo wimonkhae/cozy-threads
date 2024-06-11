@@ -103,7 +103,7 @@ Deploying on Vercel.
 
 
 ### Contributing
-TODO
+*Italicized TODO*
 
 ### Roadmap
-TODO
+*Italicized TODO*
