@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="px-4 text-center item-center mt-4">
             <p className="text-white flex-wrap"> This is an e-commerce demo with Stripe Checkout</p>
             <div className="flex flex-col items-center"> 
-            <Link href="https://github.com/wimonkhae/ecommerce-demo"
+            <Link href="https://github.com/wimonkhae/cozy-threads"
                 className="flex items-center space-x-2 hover:text-gray-300">
                
                     <button className="mr-2 mt-2 flex items-center space-x-2 hover:text-gray-300">
