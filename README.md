@@ -2,6 +2,7 @@
 Cozy Threads is an basic e-Commerce web application showcasing Stripe Payment functionalities. Customers will be able to browse product catelogue on Cozy Threads e-Commerce website, add and remove products from checkout cart, securely make payment with hosted Stripe Checkout.
 
 The demo application is live at [https://ecommerce-demo-ct.vercel.app](https://ecommerce-demo-ct.vercel)
+Source Code: [Github](https://github.com/wimonkhae/cozy-threads)
 
 ![Homepage](/public/images/Cozy_Threads.png)
 
