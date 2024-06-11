@@ -24,11 +24,12 @@ const AuthForm = ({ toggleForm }) => {
       if (response.ok) {
         // Handle successful sign-up or login
         const res = await response.json()
-        console.log('Success!', res); 
+        // console.log('User created in DB!', res); 
   
         const custId = res.user.cusId
-        localStorage.setItem("userId", res.user.userId)
+        localStorage.setItem("userId", res.user)
         localStorage.setItem("cusId", custId)
+        localStorage.setItem("userId", res.user._id)
         localStorage.setItem("user_name", name)
         localStorage.setItem("user", JSON.stringify(res.user))
         
@@ -88,6 +89,7 @@ const AuthForm = ({ toggleForm }) => {
                 Enter
         </button>
       </form>
+      
       
       <button className="mt-4"
       onClick={toggleForm}>

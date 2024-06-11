@@ -19,6 +19,7 @@ const Header = () => {
       }
       
     }, [setCusId, cartItemCount]);
+    console.log(cusId);
 
   return (
     <nav className="flex justify-between w-full py-10 px-10">

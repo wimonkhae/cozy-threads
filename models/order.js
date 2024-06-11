@@ -4,7 +4,7 @@ const OrderSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User', // one to many relations. user will create many orders
-        required: true,
+        // required: true,
     },
     cartItems: [
         {

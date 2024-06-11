@@ -1,5 +1,3 @@
-
-
 # Cozy Threads e-Commerce Web Application
 Cozy Threads is an basic e-Commerce web application showcasing Stripe Payment functionalities. Customers will be able to browse product catelogue on Cozy Threads e-Commerce website, add and remove products from checkout cart, securely make payment with hosted Stripe Checkout.
 
@@ -32,20 +30,25 @@ cp .env.example .env
 ```
 This application uses MongoDB for as Database. The publicly available **TEST ONLY** MongoDB Atlas URI has already been added to the .env file. If you want you integrate your own Mongo DB Atlas, please see intergration section below.
 
+The applicaiton utilize Next-auth with Google Providers. Next-Auth provides a quick intergration path. This is to enable quick sign in and forego the need for to enter username and password everytime they want to log in or create account. The **TEST ONLY** Google Cloud project credentials is already added to the .env file. If you want you integrate your own Google Cloud project, please see intergration section below.
+
+```diff
+- If you want to use Next-Auth with Stripe Google, log into Google Cloud account with your Stripe email to create project. This will only allow you to log in with Stripe Google account.
+```
+
 ### Configuring Stripe Account
 Product name, description and image as well as price information are being pull from your Stripe account. 
 Featured product will have metadata = `'featured'` set to `'true'`
 Product images are under `public` folder.
 
 ##### TODO: 
-- [ ]Create a `setup.js` script to populate Stripe Account product catalogue.
+[ ] Create a `setup.js` script to populate Stripe Account product catalogue.
 
 ### Running the application
 ```bash
 $ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 
 ## Other Integrations
@@ -55,18 +58,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 2. Click "Create" to create cluster
 3. Select "Shared" cluster and click "Create Cluster"
 4. Navigate to Database Access. Create Database User or edit the existing user password (make sure you know the password)
-5. Navigate to Network Access, click 'Add IP Address'. Add your IP Adress or add 0.0.0.0/0 to allow access of all IP Addresses
+5. Navigate to Network Access, click 'Add IP Address'. Add your IP Adress or add `0.0.0.0/0 to` allow access of all IP Addresses
 6. Navigate back to Database, click "Connect", Click "Drivers", here you will find your MongoDB URI. Copy the URI.
 7. Add the URI to MONGODB_URI in your `.env` file. Ensure to change the `<password>` to your user password.
 
 
-
 ### Integrating with your own google cloud project
-Ref: [Next-Auth Guid](https://karthickragavendran.medium.com/setup-guide-for-nextauth-with-google-and-credentials-providers-in-next-js-13-8f5f13414c1e)
-
-This project utilize NextAuth with Google Providers. This is to enable quick sign in. This forego the need for to enter username and password everytime they want to log in or create account.
-
-1. Sign up or log in to [Google Cloud Platform](https://console.cloud.google.com/)
+1. Sign up or log in to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one.
 3. Navigate to ‘APIs & Services’ > ‘Credentials’.
 4. Click on ‘Create Credentials’ and select ‘OAuth client ID’.
@@ -75,20 +73,12 @@ This project utilize NextAuth with Google Providers. This is to enable quick sig
     + http://localhost:3000/ 
     + http://localhost:3000/api/auth/callback/google 
 7. Once created, you’ll get your Client ID and Client Secret
-8. In .env file, Add the Client ID to GOOGLE_ID and Client Secret to GOOGLE_CLIENT_SECRET
-
+8. In .env file, Add the Client ID to `GOOGLE_ID` and Client Secret to `GOOGLE_CLIENT_SECRET`
 
 
 ### Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-1. set your environment variable. This could be done by uploading .env file to vercel under project setting > Environment Variables
-2. [Ignore build steps](https://vercel.com/guides/how-do-i-use-the-ignored-build-step-field-on-vercel) by adding below command to Build Command under project setting > General > Build & Development Settings
-`if [ "$VERCEL_ENV" == "production" ]; then exit 1; else exit 0; fi`
-3. once deploy, update NEXTAUTH_URL and NEXTAUTH_URL_INTERNAL within the environment variable in your Vercel project
+1. Sign up or log in to [Vercel](https://vercel.com/)
+2. set your environment variable. This could be done by uploading .env file to vercel under project setting > Environment Variables.
+3. once deploy, update `NEXTAUTH_URL` and `NEXTAUTH_URL_INTERNAL` within the environment variable in your Vercel project
 4. update callback URL in [google cloud](https://console.cloud.google.com/) project, under 'Authorize Javascript origins', add the deployed URL (no trailing slash at the end of the URL) and add the same URL with trailing`/api/auth/callback/google` to the "Aurthorized redirect URIs" 
-    + Example: https://{vercel-project-name}.vercel.app/api/auth/callback/google
-
+    + For example: `https://<vercel-project-name>.vercel.app/api/auth/callback/google`

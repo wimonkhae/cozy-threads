@@ -8,7 +8,7 @@ import { CartContext } from '@app/layout';
 const Success = () => {
   const [isOrderSaved, setIsOrderSaved] = useState(false);
   const [session_id, setSession_id] = useState(null);
-  const { setCartItemCount, clearCart } = useContext(CartContext);
+  const { setCartItemCount, clearCart, setCusId, cusId } = useContext(CartContext);
 
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -50,7 +50,10 @@ const Success = () => {
             setIsOrderSaved(true);
             // clear cart after save to DB
             if (typeof window !== 'undefined') {
-              localStorage.clear();
+              // localStorage.clear();
+              localStorage.removeItem("cart")
+              localStorage.removeItem("cartItemCount")
+              
               clearCart();
             }
           } else {

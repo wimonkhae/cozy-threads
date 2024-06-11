@@ -22,7 +22,7 @@ const Account = ({ params }) => {
 
   },[])
 
-  console.log("log local", localUser);
+  console.log("local user", localUser);
 
   const handleSignOut = () => {
     // Remove cusId from local storage
@@ -33,8 +33,6 @@ const Account = ({ params }) => {
     window.location.href = "/";
   };
 
-  const user = localUser
-  console.log(localUser);
 
   if (!localUser) {
     return (
