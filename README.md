@@ -58,7 +58,7 @@ Product name, description and image as well as price information are being pull 
 Featured product will have metadata = `'featured'` set to `'true'`
 Product images are under `public` folder.
 
-##### TODO: 
+##### *TODO:* 
 [ ] Create a `setup.js` script to populate Stripe Account product catalogue.
 
 ### Running the application locally
