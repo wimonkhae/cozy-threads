@@ -48,6 +48,7 @@ const handler = NextAuth({
         }
 
         return true
+        // return `/account/${customer.id}`;
       } catch (error) {
         console.log("Error checking if user exists: ", error.message);
         return false

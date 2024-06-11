@@ -3,22 +3,43 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export async function POST(request) {
   const reqBody = await request.json();
 
-  try {
-   
-    // Create Checkout Sessions from body params.
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      customer: reqBody?.customer,
-      line_items: reqBody.line_items,
-      metadata: { cart: JSON.stringify(reqBody)},
-      payment_intent_data: {
-        metadata: {
-          cart: JSON.stringify(reqBody),
-        }
+  let body = {
+    mode: 'payment',
+    line_items: reqBody.line_items,
+    metadata: { cart: JSON.stringify(reqBody) },
+    payment_intent_data: {
+      metadata: {
+        cart: JSON.stringify(reqBody),
       },
-      success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,
-    });
+    },
+    success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,
+  };
+
+  if (reqBody?.customer) {
+    body.customer = reqBody.customer;
+  }
+
+  
+  try {
+    // Create Checkout Sessions from body params.
+    const session = await stripe.checkout.sessions.create(
+      body
+      // {
+      
+      // mode: 'payment',
+      // customer: reqBody?.customer,
+      // line_items: reqBody.line_items,
+      // metadata: { cart: JSON.stringify(reqBody)},
+      // payment_intent_data: {
+      //   metadata: {
+      //     cart: JSON.stringify(reqBody),
+      //   }
+      // },
+      // success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+      // cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,
+    // }
+  );
 
 
     return new Response(JSON.stringify({ id: session.id }), {

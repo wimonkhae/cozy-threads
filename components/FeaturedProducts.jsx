@@ -53,7 +53,7 @@ export default function FeaturedProducts() {
           </button>
         </Link>
       </div>
-      <div className="container max-w-[1560px] w-full">
+      <div className="container max-w-[100%] w-full margin-auto" >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {productData.map((product) => (
             <ProductCard key={product.id} product={product} />

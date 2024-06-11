@@ -50,6 +50,8 @@ const AuthForm = ({ toggleForm }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <div className='login'>
+
       <div className="flex w-16 my-4">
           <label className='pr-10 font-bold' htmlFor="email">Name:</label>
           <input
@@ -57,6 +59,7 @@ const AuthForm = ({ toggleForm }) => {
             type="name"
             id="name"
             value={name}
+            placeholder="name"
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -68,6 +71,7 @@ const AuthForm = ({ toggleForm }) => {
             type="email"
             id="email"
             value={email}
+            placeholder="email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -79,23 +83,30 @@ const AuthForm = ({ toggleForm }) => {
             type="password"
             id="password"
             value={password}
+            placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          
         </div> 
+        <p className='text-sm italic text-gray-400'>**password is not evaluated**</p>
         <button 
-            className="bg_color :bg-lime-950 text-white font-bold mt-4 py-2 px-4 rounded-[10px] transition-colors duration-300"
+            className="bg_color hover:bg-lime-950 text-white font-bold mt-4 py-2 px-4 rounded-[10px] transition-colors duration-300"
             type="submit">
                 Enter
         </button>
+
+        </div>
       </form>
-      
-      
-      <button className="mt-4"
+
+      <div className='login'>
+      <button className="margin-auto mt-4"
       onClick={toggleForm}>
         {isSignup ? 'Already have an account? Log In' : 'Don\'t have an account? Sign Up'}
       </button>
       <div className="border-b border-gray-300 my-4 max-w-96"></div>
+
+      </div>
 
     </div>
   );

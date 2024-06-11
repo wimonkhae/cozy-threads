@@ -101,6 +101,7 @@ const CartSummary = () => {
       };
       line_items.push(item);
     });
+    new Map()
 
     try {
       // Create a Checkout Session
@@ -125,11 +126,11 @@ const CartSummary = () => {
       } else {
         const errorData = await response.json();
         console.error('Error creating Stripe checkout session:', errorData);
-        alert('Error creating Stripe checkout session. Please try again later.');
+        alert('Error creating Stripe checkout session. Please log in and try again.');
       }
     } catch (error) {
       console.error('Error creating Stripe checkout session:', error);
-      alert('Error creating Stripe checkout session. Please try again later.');
+      alert('Error creating Stripe checkout session. Please log in and try again later.');
     }
 
   }

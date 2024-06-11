@@ -12,29 +12,43 @@ const Account = ({ params }) => {
   const [ localUser, setLocalUser ] = useState(null)
 
   useEffect(() =>{
+    const setUpProviders = async () => {
+      const response = await getProviders();
+      setProviders(response)
+    }
+    setUpProviders();
 
-    if (typeof window !== 'undefined') { 
+    const local = localStorage.getItem('user')
 
-      const localStorageUser = JSON.parse(localStorage.getItem('user'))
+    
+    if (typeof window !== 'undefined' && local) { 
+  
+      const localStorageUser = JSON.parse(local)
       localStorageUser.name = localStorage.getItem('user_name')
       setLocalUser(localStorageUser)
     }
-
+ 
   },[])
 
   console.log("local user", localUser);
 
-  const handleSignOut = () => {
-    // Remove cusId from local storage
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('cusId');
+
+  const handleSignOut = async () => {
+    try {
+      // Clear the user's session and local storage
+      await signOut({ redirect: false });
+      localStorage.clear();
+      // Redirect the user to the login page
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error signing out:", error);
     }
-    signOut();
-    window.location.href = "/";
   };
 
+  console.log("localuse", localUser, )
+  console.log('session', session?.user)
 
-  if (!localUser) {
+  if (!localUser && !session?.user) {
     return (
       <section className="py-10 px-14">
         <h3 className="text-3xl font-bold pr-2">My Account</h3>
@@ -51,41 +65,40 @@ const Account = ({ params }) => {
               >
                 log in or sign up with
               </Link>
-  
             {` to continue.`}
           </Fragment>
         </div>
       </section>
     )
-  }
-  if (localUser) {
+  } else {
     return (
-        <section className="py-10 px-14">
-          <h3 className="text-3xl font-bold pr-2">My Account</h3>
-          <div className="mt-10 px-2">
-            <Image
-              className="mb-4 ml-4"
-              src="../icons/profile.svg" alt="account" width={80} height={80} 
-            />
-    
-          <div className="ml-4 mb-4">
-            <h4 className="font-bold mb-2">Account Information</h4>
-            <p>Username: {localUser.username}</p>
-            <p>Email: {localUser.email}</p>
-          </div>
-      
-          <Link href={`/account/${params.id}/orders`}>
-            <button className="ml-4 mb-4 bg_color hover:bg-lime-950  text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300">
-              View Orders
-            </button>
-          </Link>
-    
-          <button className="ml-4 mb-4 bg_color hover:bg-lime-950 text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300"
-            onClick={handleSignOut} >
-            Log out
-          </button>
+      <section className="py-10 px-14">
+        <h3 className="text-3xl font-bold pr-2">My Account</h3>
+        <div className="mt-10 px-2">
+          <Image
+            className="mb-4 ml-4"
+            src="../icons/profile.svg" alt="account" width={80} height={80} 
+          />
+
+        <div className="ml-4 mb-4">
+          <h4 className="font-bold mb-2">Account Information</h4>
+          <p>Username: {localUser ? localUser?.username : session?.user?.name}</p>
+             
+          <p>Email:{localUser ? localUser?.email : session?.user?.email}</p>
         </div>
-      </section>
+    
+        <Link href={`/account/${params.id}/orders`}>
+          <button className="ml-4 mb-4 bg_color hover:bg-lime-950  text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300">
+            View Orders
+          </button>
+        </Link>
+
+        <button className="ml-4 mb-4 bg_color hover:bg-lime-950 text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300"
+          onClick={handleSignOut} >
+          Log out
+        </button>
+      </div>
+    </section>
     )
   }
 }
