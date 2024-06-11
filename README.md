@@ -7,12 +7,27 @@ Source Code: [Github](https://github.com/wimonkhae/cozy-threads)
 
 ![Homepage](/public/images/Cozy_Threads.png)
 
+## Table of Contents
+1. [Cozy Threads e-Commerce Web Application](#cozy-threads-e-commerce-web-application)
+2. [Functionalities and Features](#functionalities-and-features)
+3. [Deploying Locally](#deploying-locally)
+   1. [Getting Started](#getting-started)
+   2. [Configuring Environment Variables](#configuring-environment-variables)
+   3. [Configuring Stripe Account](#configuring-stripe-account)
+   4. [Running the application locally](#running-the-application-locally)
+4. [Other Integrations](#other-integrations)
+   1. [Integrating with your own MongoDB Atlas](#integrating-with-your-own-mongodb-atlas)
+   2. [Integrating with your own google cloud project](#integrating-with-your-own-google-cloud-project)
+5. [Deployment](#deployment)
+6. [Contributing](#contributing)
+7. [Roadmap](#roadmap)
+
 
 ## Functionalities and Features
 - The application uses Stripe Product and Prices APIs to retreive product information and display them.
 - This demo uses Stripe Hosted Checkout with [adaptive pricing](https://dashboard.stripe.com/settings/adaptive-pricing) enabled for Checkout, providing the best in class user payment experience with little to no development time. 
 - Payment methods are configured in the Stripe Dashboard under [Payment methods settngs](https://dashboard.stripe.com/test/settings/payment_methods)
-- Log In with Stripe google account (for internal Stripe!) for quick access. 
+- Log In with Stripe google account for quick access (for internal Stripe!). Access is restricted to users within Stripe organization.
 - Log In with username and password (simulation of log in)
 - MongoDB Atlas to store user information and orders for retreival of information.
 
@@ -35,11 +50,8 @@ cp .env.example .env
 ```
 This application uses MongoDB for as Database. The publicly available **TEST ONLY** MongoDB Atlas URI has already been added to the .env file. If you want you integrate your own Mongo DB Atlas, please see intergration section below.
 
-The applicaiton utilize Next-auth with Google Providers. Next-Auth provides a quick intergration path. This is to enable quick sign in and forego the need for to enter username and password everytime they want to log in or create account. The **TEST ONLY** Google Cloud project credentials is already added to the .env file. If you want you integrate your own Google Cloud project, please see intergration section below.
+The applicaiton utilize Next-auth with Google Providers. Next-Auth provides a quick intergration path. This is to enable quick sign in and forego the need for to enter username and password everytime they want to log in or create account. The **TEST ONLY**  Google Cloud project credentials is already added to the .env file. If you want you integrate your own Google Cloud project, please see intergration section below.
 
-```diff
-- If you want to use Next-Auth with Stripe Google, log into Google Cloud account with your Stripe email to create project. This will only allow you to log in with Stripe Google account.
-```
 
 ### Configuring Stripe Account
 Product name, description and image as well as price information are being pull from your Stripe account. 
@@ -49,7 +61,7 @@ Product images are under `public` folder.
 ##### TODO: 
 [ ] Create a `setup.js` script to populate Stripe Account product catalogue.
 
-### Running the application
+### Running the application locally
 ```bash
 $ npm run dev
 ```
@@ -81,9 +93,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 8. In .env file, Add the Client ID to `GOOGLE_ID` and Client Secret to `GOOGLE_CLIENT_SECRET`
 
 
-### Deploy on Vercel
+### Deployment
+Deploying on Vercel. 
 1. Sign up or log in to [Vercel](https://vercel.com/)
 2. set your environment variable. This could be done by uploading .env file to vercel under project setting > Environment Variables.
 3. once deploy, update `NEXTAUTH_URL` and `NEXTAUTH_URL_INTERNAL` within the environment variable in your Vercel project
 4. update callback URL in [google cloud](https://console.cloud.google.com/) project, under 'Authorize Javascript origins', add the deployed URL (no trailing slash at the end of the URL) and add the same URL with trailing`/api/auth/callback/google` to the "Aurthorized redirect URIs" 
     + For example: `https://<vercel-project-name>.vercel.app/api/auth/callback/google`
+
+
+### Contributing
+TODO
+
+### Roadmap
+TODO
