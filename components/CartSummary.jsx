@@ -203,7 +203,7 @@ const CartSummary = () => {
           </div>
         </div>
       ) : (
-        <div className="mt-8 flex items-center justify-between gap-1">
+        <div className="mt-8 flex flex-col items-center justify-between gap-1">
           <p>Your cart is empty.</p>
           <Link href="/products" className="highlight_text hover:text-gray-300">
             <p className="mt-1 flex flex-col items-center">Continue Shopping</p>
