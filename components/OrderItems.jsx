@@ -56,6 +56,7 @@ const OrderItems = ({ data }) => {
   return (
     
     <div className="text-sm mt-4">
+       <div className="hidden sm:block">
         <Table 
             data={lineItems} 
             columns={[
@@ -65,7 +66,20 @@ const OrderItems = ({ data }) => {
                 { label: 'Subtotal $', accessor: 'subTotal' },
             ]}
         />
+        </div>
+        <div className="sm:hidden block ">
+          <h5 className="font-bold text-base mt-6 mb-2">Items</h5>
+          {[...lineItems].map((item, index) =>(
+              <p 
+                className="mb-1"
+                key={index}>
+                  {item.product_name} (x {item.quantity}) ${item.subTotal}
+              </p>
+          ))}
+      
+      </div>
     </div>
+    
   );
 };
 

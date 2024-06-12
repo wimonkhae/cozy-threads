@@ -81,7 +81,7 @@ const Success = () => {
         Thank you for your order. We will ship your order within 1-2 business days.
       </h4>
 
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <Suspense fallback={<div>Loading...</div>}>
           <OrderSummary
             session_id={session_id}

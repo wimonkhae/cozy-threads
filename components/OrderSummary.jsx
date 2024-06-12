@@ -65,8 +65,9 @@ const OrderSummary = () => {
         <p>Status: {order.status}</p>
         <p>User: {order.customer} </p>
         <p>Receipt:  <a className="underline hover:text-gray-300" href={order.recieptUrl} target="_blank" rel="noopener noreferrer" > Link</a> </p> 
-        <OrderItems data={order} />
-        <p className="text-base font-bold mt-2">Total Amount: {order.amount}</p>
+       
+          <OrderItems data={order} />
+          <p className="text-base font-bold mt-2">Total Amount: {order.amount}</p>
       </div>
 
     </section>
