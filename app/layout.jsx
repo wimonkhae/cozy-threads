@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
             }}
           >
             <Header />
-            <div className="hero"></div>
+            {/* <div className="hero"></div> */}
             <main className="main">{children}</main>
             <Footer />
           </CartContext.Provider>

@@ -25,20 +25,6 @@ export async function POST(request) {
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create(
       body
-      // {
-      
-      // mode: 'payment',
-      // customer: reqBody?.customer,
-      // line_items: reqBody.line_items,
-      // metadata: { cart: JSON.stringify(reqBody)},
-      // payment_intent_data: {
-      //   metadata: {
-      //     cart: JSON.stringify(reqBody),
-      //   }
-      // },
-      // success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-      // cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,
-    // }
   );
 
 

@@ -13,13 +13,13 @@ const Table = ({ data, columns }) => {
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full table-auto rounded-lg overflow-hidden shadow-md border border-gray-300">
+    <div className="overflow-x-auto sm:overflow-visible">
+      <table className="w-full table-auto rounded-lg overflow-hidden shadow-md border border-gray-300 sm:table">
         <thead>
           <tr className="bg_color text-white text-center">
-          <th className="px-4 py-3 text-center">#</th>
+          <th className="px-4 py-3 text-center sm:table-cell block">#</th>
             {columns.map((column, index) => (
-              <th key={index} className="px-4 py-3">
+              <th key={index} className="px-4 py-3 sm:table-cell block">
                 {column.label}
               </th>
             ))}
@@ -29,14 +29,15 @@ const Table = ({ data, columns }) => {
           {data.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`border-b ${
+              className={`border sm:table-row block ${
                 rowIndex % 2 === 0 ? 'bg-gray-100' : 'bg-white'
               }`}
             >
-              <td className="px-4 py-3 text-center">{rowIndex + 1}</td>
+              <td className="px-4 py-3 text-center sm:table-cell block">{rowIndex + 1}</td>
               {columns.map((column, columnIndex) => (
-                <td key={columnIndex} className="px-4 py-3 text-center">
-                  {column.accessor ? row[column.accessor] : ''}
+                <td key={columnIndex} className="px-4 py-3 text-center sm:table-cell block">
+                  {/* {column.accessor ? row[column.accessor] : ''} */}
+                  {column.render ? column.render(row[column.accessor], row) : row[column.accessor]}
                 </td>
               ))}
             </tr>

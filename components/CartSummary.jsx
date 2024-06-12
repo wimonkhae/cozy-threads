@@ -67,6 +67,7 @@ const CartSummary = () => {
       setCart(updatedCart);
       setCartItemCount(cartItemCount - removedItem.quantity);
       setTotalAmount(totalAmount - (removedItem.price * removedItem.quantity));
+      
     }
   };
 
@@ -136,68 +137,71 @@ const CartSummary = () => {
   }
 
   return (
-    <section className="mx-auto ">
+    <section className="mx-auto">
       {cart && totalAmount > 0 ? (
-        <>
-          <ul className="space-y-4 mx-auto flex flex-wrap">
+        <div className="w-[100%]">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
             {[...cart].map((item) => (
-              <li key={item.id} className="bg-white p-4 w-full rounded-md shadow-md flex items-center justify-between">
-                <div className="flex items-center space-x-4 w-full ">
+              <div
+                key={item.id}
+                className="bg-white p-4 rounded-md shadow-md flex flex-col sm:flex-row items-center justify-between"
+              >
+                <div className="flex items-center space-x-4 w-full sm:w-auto">
                   <Image
                     src={item.image}
                     alt={item.name}
-                    width={60}
-                    height={60}
+                    width={80}
+                    height={80}
                     className="rounded-md mr-10"
                   />
-                  <div className="mx-10 space-x10 flex flex-col" >
-                    <h3 className="text-lg font-bold flex">
-                      {item.name}
-                    </h3>
-                    <p className="text-gray-500 flex">
-                      ${item.price}
-                    </p>
+                  <div className="space-x10 flex flex-col ">
+                    <h3 className="text-lg font-bold">{item.name}</h3>
+                    <p className="text-gray-500">${item.price}</p>
                   </div>
                 </div>
-                <div className="flex items-center ml-20 space-x-1 ">
-                <p className="text-gray-500 flex pr-1"> Qty: </p>
-                <input
-                    type="number"
-                    min="1"
-                    value={item.quantity}
-                    onChange={(e) => 
-                      handleQuantityChange(item.id, item.quantity, parseInt(e.target.value))
-                    }
-                    className="w-16 rounded-md border border-gray-300 px-2 py-1 text-sm"
-                  />
+                <div className="flex items-center justify-between mt-4 sm:mt-0 w-full sm:w-auto">
+                  <div className="flex items-center space-x-1">
+                    <p className="text-gray-500 pr-1">Qty:</p>
+                    <input
+                      type="number"
+                      min="1"
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleQuantityChange(item.id, item.quantity, parseInt(e.target.value))
+                      }
+                      className="w-16 rounded-md border border-gray-300 px-2 py-1 text-sm"
+                    />
+                  </div>
+                  <div className="flex items-center ml-4">
+                    <button
+                      onClick={() => handleRemoveItem(item.id)}
+                      className="bg-transparent hover:bg-gray-100 p-2 rounded-full"
+                    >
+                      <Image
+                        src="/icons/delete.svg"
+                        alt="Remove item"
+                        width={30}
+                        height={30}
+                        className="text-red-500 hover:text-red-600 cursor-pointer"
+                      />
+                    </button>
+                  </div>
                 </div>
-                
-                <button
-                  onClick={() => handleRemoveItem(item.id)}
-                  className="bg-transparent hover:bg-gray-100 p-2 rounded-full"
-                >
-                  <Image
-                    src="/icons/delete.svg"
-                    alt="Remove item"
-                    width={38}
-                    height={38}
-                    className="text-red-500 hover:text-red-600 cursor-pointer"
-                  />
-                </button>
-
-              </li>
+              </div>
             ))}
-          </ul>
-          <p className="mt-4 text-lg font-bold">Total amount: ${totalAmount.toFixed(2)}</p>
-          {cart && (
-            <button
-              onClick={onProceedToCheckout}
-              className="bg_light_green hover:bg-green-900 mt-4 rounded-md py-2 px-4 text-white float-right"
-            >
-              Proceed to Checkout
-            </button>
-          )}
-        </>
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-4">
+            <p className="text-lg font-bold">Total amount: ${totalAmount.toFixed(2)}</p>
+            {cart && (
+              <button
+                onClick={onProceedToCheckout}
+                className="bg_light_green hover:bg-green-900 rounded-md py-2 px-4 text-white mt-4 sm:mt-0"
+              >
+                Proceed to Checkout
+              </button>
+            )}
+          </div>
+        </div>
       ) : (
         <div className="mt-8 flex items-center justify-between gap-1">
           <p>Your cart is empty.</p>
@@ -206,10 +210,8 @@ const CartSummary = () => {
           </Link>
         </div>
       )}
-
     </section>
   );
-
 };
 
 export default CartSummary;

@@ -11,7 +11,6 @@ const Orders = ({ params }) => {
   useEffect(() => {
     const retrieveUserorders = async () => {
       try {
-        console.log("getting user orders form ordercard component");
         const response = await fetch(`/api/account/${params.id}/orders`);
 
         if (response.ok) {
@@ -29,6 +28,32 @@ const Orders = ({ params }) => {
 
     retrieveUserorders();
   }, [params.id]);
+
+  const hasRefundPermission = (order) => {
+    // Add your logic to check if the user has the permission to refund the order
+    // This can be based on the user's role, the order status, or any other relevant criteria
+    return order.status === 'succeeded';
+  };
+
+  const refundColumn = {
+    label: 'Refund',
+    accessor: 'paymentIntent',
+    render: (paymentIntent, order) => {
+      if (hasRefundPermission(order)) {
+        return (
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+            onClick={() => handleRefund(paymentIntent)}
+          >
+            Refund
+          </button>
+        );
+      } else {
+        <p>N/A</p>
+      }
+      return null;
+    },
+  };
 
   const handleRefund = async (paymentIntent) => {
     try {
@@ -76,17 +101,26 @@ const Orders = ({ params }) => {
                   { label: 'Date', accessor: 'pi_created' },
                   { label: 'Total $', accessor: 'totalAmount' },
                   { label: 'Status', accessor: 'status' },
-                  {
-                    label: 'Refund',
-                    render: (paymentIntent) => (
-                      <button
-                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-                        onClick={() => handleRefund(paymentIntent)}
-                      >
-                        Refund
-                      </button>
-                    ),
-                  },
+                  refundColumn,
+                  // {
+                  //   label: 'Refund',
+                  //   render: (paymentIntent) => {
+
+                  //   const order = userOrders.find(o => o.paymentIntent === paymentIntent);
+                  //   if (hasRefundPermission(order)) {
+                  //     return (
+                  //       <button
+                  //         className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                  //         onClick={() => handleRefund(paymentIntent)}
+                  //       >
+                  //         Refund
+                  //       </button>
+                  //     );
+                  //   }
+                  //   return null;
+                  // }
+
+                  // },
                 ]}
               ></Table>
             </div>

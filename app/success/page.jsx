@@ -92,7 +92,7 @@ const Success = () => {
 
       <div className="mt-8 flex items-center justify-between gap-1">
           <Link href="/products" className="font-bold hover:text-gray-300">
-            <p className="mt-1 flex flex-col highlight_text-text items-center">Continue Shopping?</p>
+            <p className="highlight_text mt-1 flex flex-col highlight_text-text items-center">Continue Shopping?</p>
           </Link>
       </div>
     </section>

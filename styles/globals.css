@@ -29,17 +29,17 @@
     --gutter-h: 24px;
     --block-padding: 60px;
   }
-}
+} 
 
 html {
   background: var(--theme-bg);
   -webkit-font-smoothing: antialiased;
   opacity: 1;
 
-  &[data-theme=dark],
+  /* &[data-theme=dark],
   &[data-theme=light] {
     opacity: initial;
-  }
+  } */
 }
 
 html,
@@ -62,6 +62,7 @@ body {
 .main {
   flex: 1 1 auto;
 }
+
 
 .dropdown {
   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
@@ -91,6 +92,6 @@ body {
   width: 200px;
 }
 
-.cart_bg {
+/* .cart_bg {
   background-color: var(--color-light-gray);
-}
+} */
