@@ -144,7 +144,7 @@ const CartSummary = () => {
             {[...cart].map((item) => (
               <div
                 key={item.id}
-                className="bg-white p-4 rounded-md shadow-md flex flex-col sm:flex-row items-center justify-between"
+                className="bg-white p-4 border-t-2 border-gray-50 rounded-md shadow-md flex flex-col sm:flex-row items-center justify-between"
               >
                 <div className="flex items-center space-x-4 w-full sm:w-auto">
                   <Image
@@ -154,12 +154,12 @@ const CartSummary = () => {
                     height={80}
                     className="rounded-md mr-10"
                   />
-                  <div className="space-x10 flex flex-col ">
+                  <div className="space-x10 flex flex-col text-left">
                     <h3 className="text-lg font-bold">{item.name}</h3>
                     <p className="text-gray-500">${item.price}</p>
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-4 sm:mt-0 w-full sm:w-auto">
+                <div className="flex items-center justify-between ml-2 mt-4 sm:mt-0 w-full sm:w-auto">
                   <div className="flex items-center space-x-1">
                     <p className="text-gray-500 pr-1">Qty:</p>
                     <input
