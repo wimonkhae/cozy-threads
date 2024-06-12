@@ -63,7 +63,7 @@ const Account = ({ params }) => {
                 className="highlight_text text-lg hover:text-green-900"
                 href="/login" 
               >
-                log in or sign up with
+                log in or sign up 
               </Link>
             {` to continue.`}
           </Fragment>
