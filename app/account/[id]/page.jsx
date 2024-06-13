@@ -84,20 +84,6 @@ const Account = ({ params }) => {
              
           <p>Email:{localUser ? localUser?.email : session?.user?.email}</p>
         </div>
-    
-        <Link
-          href={
-            localUser
-              ? `/account/${localUser.cusId}/orders`
-              : session?.user
-                ? `/account/${session.user.cusId}/orders`
-                : '/'
-          }
-        >
-          <button className="ml-4 mb-4 bg_color hover:bg-lime-950  text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300">
-            View Orders
-          </button>
-        </Link>
 
         <button className="ml-4 mb-4 bg_color hover:bg-lime-950 text-white font-bold py-2 px-4 rounded-[10px] transition-colors duration-300"
           onClick={handleSignOut} >
