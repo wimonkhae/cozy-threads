@@ -71,11 +71,6 @@ const Orders = ({ params }) => {
                       {_id}
                     </Link>
                   ) },
-                  // { label: 'Payment ID', accessor: 'paymentIntent', render: (paymentIntent) => (
-                  //   <Link href={`/order/${paymentIntent}`} className="underline hover:text-blue-600">
-                  //     {paymentIntent}
-                  //   </Link>
-                  // ) },
                   { label: 'Date', accessor: 'pi_created' },
                   {
                     label: 'Items',
