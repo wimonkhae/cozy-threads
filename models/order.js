@@ -37,6 +37,10 @@ const OrderSchema = new Schema({
         type: String, 
         // required: true 
     },
+    receipt: { 
+        type: String, 
+        // required: true 
+    },
     createdAt: { 
         type: Date, 
         default: Date.now 

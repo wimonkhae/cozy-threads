@@ -52,7 +52,7 @@ const Order = ({ params }) => {
                         <p className="sm:truncate">Purchase Date: {orderDetails.pi_created}</p>
                         <p className="sm:truncate">Status: {orderDetails.status}</p>
                         <p className="sm:truncate">User: {orderDetails.cusId} </p>
-                        <p className="sm:truncate">Receipt:  <a className="underline hover:text-gray-300" href={orderDetails.recieptUrl} target="_blank" rel="noopener noreferrer" > Link</a> </p>
+                        <p className="sm:truncate">Receipt:  <a className="underline hover:text-gray-300" href={orderDetails.receipt} target="_blank" rel="noopener noreferrer" > Link</a> </p>
                       </>
                     )}
                   </div>

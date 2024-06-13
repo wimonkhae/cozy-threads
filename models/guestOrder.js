@@ -32,6 +32,10 @@ const GuestOrderSchema = new Schema({
     totalAmount: { 
         type: String, 
         // required: true 
+    },   
+    receipt: { 
+        type: String, 
+        // required: true 
     },
     createdAt: { 
         type: Date, 

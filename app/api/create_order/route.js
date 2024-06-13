@@ -22,6 +22,7 @@ export async function POST(request) {
                 status: reqBody.status,
                 totalAmount: `$${reqBody.totalAmount}`,
                 pi_created: reqBody.pi_created,
+                receipt: reqBody.receipt,
             });
 
             //save to db
@@ -41,6 +42,7 @@ export async function POST(request) {
                 status: reqBody.status,
                 totalAmount: `$${reqBody.totalAmount}`,
                 pi_created: reqBody.pi_created,
+                receipt: reqBody.receipt,
             });
 
             //save to db

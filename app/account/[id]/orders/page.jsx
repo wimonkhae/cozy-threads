@@ -10,6 +10,7 @@ const Orders = ({ params }) => {
 
   useEffect(() => {
     const retrieveUserorders = async () => {
+  
       try {
         const response = await fetch(`/api/account/${params.id}/orders`);
 
@@ -39,10 +40,6 @@ const Orders = ({ params }) => {
 
     retrieveUserorders();
   }, [params.id]);
-
-  console.log('====================================');
-  console.log(userOrders);
-  console.log('====================================');
 
 
   return (

@@ -30,7 +30,6 @@ const Account = ({ params }) => {
  
   },[])
 
-  console.log("local user", localUser);
 
 
   const handleSignOut = async () => {

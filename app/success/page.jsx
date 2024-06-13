@@ -43,6 +43,7 @@ const Success = () => {
               pi: localStorage.getItem('pi_id'),
               status: localStorage.getItem('pi_status'),
               pi_created: localStorage.getItem('created'),
+              receipt: localStorage.getItem('receipt'),
             }),
           });
 
