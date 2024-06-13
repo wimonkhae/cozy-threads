@@ -2,7 +2,6 @@ import Order from '@models/order';
 import { connectToDB } from '@utils/database';
 
 export const GET = async(request, { params }) => {
-    console.log("get user order from cusId ", params.id);
 
     try {
         //retrieve order from db

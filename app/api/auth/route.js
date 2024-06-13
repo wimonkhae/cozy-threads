@@ -6,7 +6,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request) {
     const reqBody = await request.json()
-    console.log(reqBody);
     try {
         //connect to mongoDB
         await connectToDB();
