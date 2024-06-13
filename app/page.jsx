@@ -1,7 +1,6 @@
 import Hero from "@components/Hero";
 import FeaturedProducts from "@components/FeaturedProducts";
 
-
 // export const metadata = {
 //   title: "Cozy Threads",
 //   description: "Ethically-source apparel and accessories",

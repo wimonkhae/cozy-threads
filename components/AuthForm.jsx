@@ -24,7 +24,6 @@ const AuthForm = ({ toggleForm }) => {
       if (response.ok) {
         // Handle successful sign-up or login
         const res = await response.json()
-        // console.log('User created in DB!', res); 
   
         const custId = res.user.cusId
         localStorage.setItem("userId", res.user)

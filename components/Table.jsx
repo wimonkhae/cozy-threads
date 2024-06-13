@@ -13,7 +13,7 @@ const Table = ({ data, columns }) => {
   }
 
   return (
-    <div className="overflow-x-auto sm:overflow-visible">
+    <div className="overflow-x-auto"> 
       <table className="w-full table-auto rounded-lg overflow-hidden shadow-md border border-gray-300 sm:table">
         <thead>
           <tr className="bg_color text-white text-center">

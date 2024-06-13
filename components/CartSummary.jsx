@@ -21,8 +21,6 @@ const CartSummary = () => {
     setCartItemCount
   } = useContext(CartContext);
 
-  const [quantity, setQuantity] = useState(0);
-
 
   const handleQuantityChange = (itemId, currQty, newQty) => {
     if (typeof window !== 'undefined') {
@@ -30,7 +28,6 @@ const CartSummary = () => {
       const cartItemCount = JSON.parse(localStorage.getItem('cartItemCount'));
       const totalAmount = JSON.parse(localStorage.getItem('totalAmount'));
 
-      const updateCart = localCart
       const existingItem = localCart.find((item) => item.id === itemId);
 
       // Update quantity

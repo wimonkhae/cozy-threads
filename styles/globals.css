@@ -35,11 +35,6 @@ html {
   background: var(--theme-bg);
   -webkit-font-smoothing: antialiased;
   opacity: 1;
-
-  /* &[data-theme=dark],
-  &[data-theme=light] {
-    opacity: initial;
-  } */
 }
 
 html,

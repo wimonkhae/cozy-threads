@@ -30,7 +30,7 @@ const Success = () => {
           // Add a 2-second sleep delay to wait for PI to be retreived from Stripe
           await sleep(2000);
 
-          const response = await fetch('/api/order', {
+          const response = await fetch('/api/create_order', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

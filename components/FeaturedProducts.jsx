@@ -47,9 +47,9 @@ export default function FeaturedProducts() {
           href="/products"
           className="flex items-center space-x-2 hover:text-gray-300"
         >
-          <p className="mt-1 flex flex-col items-center">Shop All</p>
-          <button className="flex items-center pt-1">
-            <Image src="/icons/arrow-right.svg" alt="arrow-right" width={24} height={24} />
+          <p className="flex flex-col text-lg items-center hidden sm:inline-block">Shop All</p>
+          <button className="flex items-center ">
+            <Image src="/icons/arrow-right.svg" alt="arrow-right" width={40} height={40} />
           </button>
         </Link>
       </div>
