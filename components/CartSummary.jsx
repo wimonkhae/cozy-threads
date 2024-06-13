@@ -48,25 +48,25 @@ const CartSummary = () => {
     }
   };
 
-  const handleRemoveItem = (itemId) => {
-    if (typeof window !== 'undefined') {
-      const localCart = JSON.parse(localStorage.getItem('cart'));
-      const cartItemCount = JSON.parse(localStorage.getItem('cartItemCount'));
-      const totalAmount = JSON.parse(localStorage.getItem('totalAmount'));
+const handleRemoveItem = (itemId) => {
+  if (typeof window !== 'undefined') {
+    const localCart = JSON.parse(localStorage.getItem('cart'));
+    const cartItemCount = JSON.parse(localStorage.getItem('cartItemCount'));
+    const totalAmount = JSON.parse(localStorage.getItem('totalAmount'));
 
-      const updatedCart = localCart.filter((item) => item.id !== itemId);
-      const removedItem = localCart.find((item) => item.id === itemId);
+    const updatedCart = localCart.filter((item) => item.id !== itemId);
+    const removedItem = localCart.find((item) => item.id === itemId);
 
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      localStorage.setItem('cartItemCount', cartItemCount - removedItem.quantity);
-      localStorage.setItem('totalAmount', totalAmount - (removedItem.price * removedItem.quantity));
+    const updatedTotalAmount = totalAmount - (removedItem.price * removedItem.quantity);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem('cartItemCount', cartItemCount - removedItem.quantity);
+    localStorage.setItem('totalAmount', updatedTotalAmount);
 
-      setCart(updatedCart);
-      setCartItemCount(cartItemCount - removedItem.quantity);
-      setTotalAmount(totalAmount - (removedItem.price * removedItem.quantity));
-      
-    }
-  };
+    setCart(updatedCart);
+    setCartItemCount(cartItemCount - removedItem.quantity);
+    setTotalAmount(updatedTotalAmount);
+  }
+};
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
