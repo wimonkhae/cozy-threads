@@ -67,11 +67,6 @@ const Login = ({ router }) => {
       <section className="py-10 px-14 base max-w-[100%] text-center">
          <h2 className="text-3xl font-bold pr-2 mb-10">{isSignup ? 'Sign Up' : 'Log In'}</h2>
              
-            {/* <Image
-            className="mb-6 ml-1 mt-10 mx-2"
-             src="/icons/profile.svg" alt="account" width={80} height={80} 
-          />  */}
-
         <AuthForm toggleForm={toggleForm} />
 
         <div className="flex flex-col">
