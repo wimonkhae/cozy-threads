@@ -51,8 +51,8 @@ const OrderItems = ({ data }) => {
             columns={[
                 { label: 'Name', accessor: 'description' },
                 { label: 'Qty', accessor: 'quantity' },
-                { label: 'Price $', accessor: 'itemTotal' },
-                { label: 'Subtotal $', accessor: 'subtotal' },
+                { label: 'Price', accessor: 'itemTotal' },
+                { label: 'Subtotal', accessor: 'subtotal' },
             ]}
         />
         </div>
