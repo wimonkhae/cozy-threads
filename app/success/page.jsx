@@ -21,7 +21,6 @@ const Success = () => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       setSession_id(urlParams.get('session_id'));
-
     }
 
     const saveOrder = async () => {
@@ -44,6 +43,7 @@ const Success = () => {
               status: localStorage.getItem('pi_status'),
               pi_created: localStorage.getItem('created'),
               receipt: localStorage.getItem('receipt'),
+              line_items: JSON.parse(localStorage.getItem('line_items')),
             }),
           });
 
@@ -54,6 +54,8 @@ const Success = () => {
               // localStorage.clear();
               localStorage.removeItem("cart")
               localStorage.removeItem("cartItemCount")
+              localStorage.removeItem("totalAmount")
+              localStorage.removeItem("line_items");
               
               clearCart();
             }

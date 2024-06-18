@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
 import Link from "next/link";
 import OrderItems from "./OrderItems";
+import formatCurrency from "@utils/formatCurrency";
 
 const OrderSummary = () => {
 
@@ -20,10 +21,27 @@ const OrderSummary = () => {
         const response = await fetch(`/api/checkout_sessions?session_id=${session_id}`);
         if (response.ok) {
           const data = await response.json();
+
+            const lineItemList =[]
+
+            for (const item of data.line_items.data) {
+              const lineItem = {
+                id: item.id,
+                name: item.description,
+                quantity: item.quantity,
+                unit_amount: item.amount_total,
+                currency: item.currency,
+                price_id: item.price.id
+              };
+                lineItemList.push(lineItem)
+            }
+
           if (typeof window !== 'undefined') {
             localStorage.setItem("pi_id", data.id)
             localStorage.setItem("pi_status", data.status)
+            localStorage.setItem("line_items", JSON.stringify(lineItemList))
             localStorage.setItem("pi_amount", data.amount)
+            localStorage.setItem("currency", data.currency)
             localStorage.setItem("receipt", data.recieptUrl)
             localStorage.setItem("created", data.created )
 
@@ -67,7 +85,7 @@ const OrderSummary = () => {
         <p>Receipt:  <a className="underline hover:text-gray-300" href={order.recieptUrl} target="_blank" rel="noopener noreferrer" > Link</a> </p> 
        
           <OrderItems data={order} />
-          <p className="text-base font-bold mt-2">Total Amount: {order.amount}</p>
+          <p className="text-base font-bold mt-2">Total Amount: {formatCurrency(order.amount, order.currency)}</p>
       </div>
 
     </section>

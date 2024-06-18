@@ -18,7 +18,11 @@ const UserSchema = new Schema({
         type: String,
         unique: [true, 'Customer ID already exists'],
         required: [true, 'Customer ID is required'],
-    }
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    },
 })
 
 //model object provided by mongoose.

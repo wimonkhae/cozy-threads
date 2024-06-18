@@ -11,15 +11,16 @@ export async function GET(request) {
   }
 
   try {
-    const price = await stripe.prices.retrieve(priceId)
-    const product = await stripe.products.retrieve(price.product)
+    const price = await stripe.prices.retrieve(priceId, {
+      expand: ['product']
+    });
 
     return new Response(
       JSON.stringify({
-        product_name: product.name,
-        image: product.images[0],
+        product_name: price.product.name,
+        image: price.product.images[0],
         amount: price.unit_amount/100,
-        product_id: product.id,
+        product_id: price.product.id,
         price_id: price.id
 
       })

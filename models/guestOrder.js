@@ -13,6 +13,14 @@ const GuestOrderSchema = new Schema({
           image: { type: String, required: true },
         },
       ],
+      line_items: [{
+        id: { type: String, required: true },
+        name: { type: String, required: false },
+        quantity: { type: Number, required: true },
+        unit_amount:  { type: Number, required: true },
+        currency:  { type: String, required: true },
+        price_id: { type: String, required: true },
+    }],
     cusId: {
         type: String,
     },

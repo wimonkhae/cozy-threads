@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Table from './Table';
+import formatCurrency from '@utils/formatCurrency';
 
 const OrderItems = ({ data }) => {
 
@@ -12,28 +13,16 @@ const OrderItems = ({ data }) => {
   useEffect(() => {
     const getCartProductDetails = async () => {
       try {
-        const cart = JSON.parse(data.line_items.cart);
-        const cartItemCount = cart.line_items.length;
-        const itemDetails = [];
+        const line_items = data.line_items.data;
+        for (const item of line_items) {
+          item.itemTotal = formatCurrency((item.amount_total /100), item.currency)
 
-        for (let i = 0; i < cartItemCount; i++) {
-          const itemPrice = cart.line_items[i].price;
-          const itemQuantity = cart.line_items[i].quantity;
-
-          const response = await fetch(`/api/product_details?price_id=${itemPrice}`);
-
-          if (response.ok) {
-            const itemData = await response.json();
-            itemData.quantity = itemQuantity;
-            itemData.subTotal = itemQuantity * itemData.amount
-            itemDetails.push(itemData);
-          } else {
-            const errorData = await response.json();
-            setError(errorData.message || 'Error fetching order details.');
-          }
+          const subtotal = formatCurrency(((item.amount_total/100) * item.quantity), item.currency)
+          item.subtotal = subtotal;
         }
 
-        setLineItems(itemDetails);
+        setLineItems(line_items);
+
       } catch (error) {
         console.log(error);
         setError('An error occurred while fetching the order details.');
@@ -60,10 +49,10 @@ const OrderItems = ({ data }) => {
         <Table 
             data={lineItems} 
             columns={[
-                { label: 'Name', accessor: 'product_name' },
+                { label: 'Name', accessor: 'description' },
                 { label: 'Qty', accessor: 'quantity' },
-                { label: 'Price $', accessor: 'amount' },
-                { label: 'Subtotal $', accessor: 'subTotal' },
+                { label: 'Price $', accessor: 'itemTotal' },
+                { label: 'Subtotal $', accessor: 'subtotal' },
             ]}
         />
         </div>
@@ -73,7 +62,7 @@ const OrderItems = ({ data }) => {
               <p 
                 className="mb-1"
                 key={index}>
-                  {item.product_name} (x{item.quantity}) - ${item.subTotal}
+                  {item.description} (x{item.quantity}) - ${item.subtotal}
               </p>
           ))}
       

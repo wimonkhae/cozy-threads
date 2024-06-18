@@ -64,8 +64,10 @@ export async function GET(request) {
       JSON.stringify({
         id: session.payment_intent.id,
         status: session.payment_intent.status,
-        amount: "$" + session.payment_intent.amount / 100,
-        line_items: session.payment_intent.metadata,
+        amount: session.payment_intent.amount / 100,
+        currency: session.payment_intent.currency,
+        line_items: session.line_items,
+        cart_items: session.payment_intent.metadata,
         recieptUrl: session.payment_intent.latest_charge.receipt_url,
         customer: session.payment_intent.customer || 'Guest',
         created: new Date(session.created * 1000).toDateString()

@@ -1,7 +1,5 @@
 "use client";
 
-import React from 'react';
-
 const Table = ({ data, columns }) => {
 
   if (!Array.isArray(data) || data.length === 0) {
