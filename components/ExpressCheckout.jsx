@@ -82,7 +82,6 @@ const CheckoutPage = () => {
 
   return (
     <div id="checkout-page">
-        EXPRESS CHECKOUT
       <div ref={expressCheckoutRef}></div>
       {errorMessage && <div>{errorMessage}</div>}
     </div>
