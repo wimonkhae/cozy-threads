@@ -27,8 +27,6 @@ export async function POST(req) {
       body,
     );
 
-    console.log("intent", intent);
-
     return NextResponse.json({ client_secret: intent.client_secret });
   } catch (err) {
     console.error('Error creating Payment Intent:', err);
