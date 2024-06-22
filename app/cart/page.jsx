@@ -43,7 +43,7 @@ export default function Cart() {
         borderRadius: '10px',
       },
     },
-  };
+  }
 
 
   return (
