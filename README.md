@@ -98,7 +98,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Deploying on Vercel. 
 1. Sign up or log in to [Vercel](https://vercel.com/)
 2. set your environment variable. This could be done by uploading .env file to vercel under project setting > Environment Variables.
-3. once deploy, update `NEXTAUTH_URL` and `NEXTAUTH_URL_INTERNAL` within the environment variable in your Vercel project
+3. once deploy, update `NEXTAUTH_URL`, `NEXTAUTH_URL_INTERNAL` and `NEXT_PUBLIC_URL` within the environment variable in your Vercel project
 4. update callback URL in [google cloud](https://console.cloud.google.com/) project, under 'Authorize Javascript origins', add the deployed URL (no trailing slash at the end of the URL) and add the same URL with trailing`/api/auth/callback/google` to the "Aurthorized redirect URIs" 
     + For example: `https://<vercel-project-name>.vercel.app/api/auth/callback/google`
 
