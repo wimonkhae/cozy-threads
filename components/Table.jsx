@@ -38,7 +38,7 @@ const Table = ({ data, columns }) => {
   return (
     <>
     {/* Desktop view */}
-    <section className="py-10 px-14 max-w-[100%] text-center mb-2 hidden md:block">
+    <section className="max-w-[100%] text-center mb-2 hidden md:block">
 
     <div className="overflow-x-auto"> 
       <table className="w-full table-auto rounded-lg overflow-hidden shadow-md border border-gray-300 sm:table">
@@ -75,7 +75,7 @@ const Table = ({ data, columns }) => {
     </section>
 
     {/* Mobile View */}
-    <section className="py-10 px-4 text-center mx-auto block md:hidden">
+    <section className="text-center mx-auto block md:hidden">
 
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 text-sm">
       {data.map((row) => (
