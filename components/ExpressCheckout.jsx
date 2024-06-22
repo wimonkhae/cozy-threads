@@ -1,44 +1,17 @@
 "use client";
-import { useEffect, useRef, useState } from 'react';
-import { useStripe, useElements, ExpressCheckoutElement } from '@stripe/react-stripe-js';
 
-const CheckoutPage = () => {
+import React, { useContext, useState } from 'react';
+import { useStripe, useElements, ExpressCheckoutElement } from '@stripe/react-stripe-js';
+import { CartContext } from '@app/layout';
+
+const ExpressCheckout = ({ cart }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState();
-  const expressCheckoutRef = useRef(null);
-
-  useEffect(() => {
-    const totalAmount = localStorage.getItem('totalAmount')
-
-    if (stripe && elements && expressCheckoutRef.current) {
-      const expressCheckoutElement = elements.create("expressCheckout", {
-        paymentRequest: stripe.paymentRequest({
-          country: "US",
-          currency: "usd",
-          total: {
-            label: "Total",
-            amount: Number(totalAmount), // Same amount as in the backend
-          },
-          requestPayerName: true,
-          requestPayerEmail: true,
-        }),
-      });
-
-      expressCheckoutElement.mount(expressCheckoutRef.current);
-
-      expressCheckoutElement.on('confirm', async (event) => {
-        const { error, paymentIntent } = event;
-        if (error) {
-          setErrorMessage(error.message);
-        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-          console.log('Payment Success!');
-        }
-      });
-    }
-  }, [stripe, elements]);
+  const { cusId } = useContext(CartContext);
 
   const onConfirm = async () => {
+
     if (!stripe) {
       return;
     }
@@ -50,13 +23,16 @@ const CheckoutPage = () => {
     }
 
     try {
-      const response = await fetch('/api/create-intent', {
+      console.log('creating PI');
+      const response = await fetch('/api/create_intent', {
         method: 'POST',
-       
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(amount, totalAmount)
+        body: JSON.stringify({ 
+          cart: cart,
+          cusId: cusId
+         }),
       });
       const { client_secret } = await response.json();
 
@@ -64,7 +40,7 @@ const CheckoutPage = () => {
         elements,
         clientSecret: client_secret,
         confirmParams: {
-          return_url: 'http://localhost:3000/success',
+          return_url: `${process.env.NEXT_PUBLIC_URL}/payment-success`,
         },
       });
 
@@ -81,12 +57,15 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div id="checkout-page">
-        EXPRESS CHECKOUT
-      <div ref={expressCheckoutRef}></div>
-      {errorMessage && <div>{errorMessage}</div>}
+    <div id="checkout-page" className="flex justify-end mt-4">
+      <ExpressCheckoutElement onConfirm={onConfirm}/>
+      {errorMessage && 
+        <div className="flex mt-4">
+          {errorMessage}
+        </div>
+      }
     </div>
   );
 };
 
-export default CheckoutPage;
+export default ExpressCheckout;
