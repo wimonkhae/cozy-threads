@@ -62,7 +62,7 @@ const OrderItems = ({ data }) => {
               <p 
                 className="mb-1"
                 key={index}>
-                  {item.description} (x{item.quantity}) - ${item.subtotal}
+                  {item.description} (x{item.quantity}) - {item.subtotal}
               </p>
           ))}
       
