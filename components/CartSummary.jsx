@@ -201,13 +201,13 @@ const handleRemoveItem = (itemId) => {
             )}
           </div>
           
-          <hr className="my-6" />
+          {/* <hr className="my-6" />
             <div>
               {cart && (
                   <PaymentElement cart={cart}/>
                 )}
             </div>
-          <hr className='my-6' />
+          <hr className='my-6' /> */}
 
         </div>
       ) : (
