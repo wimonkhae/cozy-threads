@@ -5,6 +5,7 @@ import { CartContext } from '@app/layout';
 import Link from "next/link";
 import Image from "next/image";
 import { loadStripe } from '@stripe/stripe-js';
+import PaymentElement from './paymentElement';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -133,6 +134,7 @@ const handleRemoveItem = (itemId) => {
 
   }
 
+  console.log('cart', cart);
   return (
     <section className="mx-auto">
       {cart && totalAmount > 0 ? (
@@ -198,6 +200,15 @@ const handleRemoveItem = (itemId) => {
               </button>
             )}
           </div>
+          
+          <hr className="my-6" />
+            <div>
+              {cart && (
+                  <PaymentElement cart={cart}/>
+                )}
+            </div>
+          <hr className='my-6' />
+
         </div>
       ) : (
         <div className="mt-8 flex flex-col items-center justify-between gap-1">

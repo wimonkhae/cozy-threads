@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useStripe, useElements, ExpressCheckoutElement } from '@stripe/react-stripe-js';
 import { CartContext } from '@app/layout';
 
@@ -31,7 +31,7 @@ const ExpressCheckout = ({ cart }) => {
         },
         body: JSON.stringify({ 
           cart: cart,
-          cusId: cusId
+          cusId: localStorage.getItem('cusId')
          }),
       });
       const { client_secret } = await response.json();
@@ -57,13 +57,16 @@ const ExpressCheckout = ({ cart }) => {
   }
 
   return (
-    <div id="checkout-page" className="flex justify-end mt-4">
-      <ExpressCheckoutElement onConfirm={onConfirm}/>
-      {errorMessage && 
-        <div className="flex mt-4">
-          {errorMessage}
-        </div>
-      }
+    <div>
+      <p className='font-bold my-4'>Express Checkout</p>
+      <div id="checkout-page" className="my-6">
+        <ExpressCheckoutElement onConfirm={onConfirm}/>
+        {errorMessage && 
+          <div className="flex mt-4">
+            {errorMessage}
+          </div>
+        }
+      </div>
     </div>
   );
 };

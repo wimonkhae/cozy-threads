@@ -2,15 +2,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export const GET = async (request, { params }) => {
 
-    console.log('getting PI', params.id);
     const id = params.id
 
     try {
 
         //getting a payment intent
         if (id.startsWith('pi')){
-
-            console.log('retreive a PI');
             const paymentIntent = await stripe.paymentIntents.retrieve(id, {
                 expand: ['latest_charge']
             });

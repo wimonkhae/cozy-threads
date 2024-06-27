@@ -99,7 +99,7 @@ const PaymentSuccess = () => {
 
   return (
     <section className="py-10 px-14">
-      <h3 className="text-3xl font-bold pr-2">Payment Successful</h3>
+      <h3 className="text-3xl font-bold pr-2">Payment Summary</h3>
       <h4 className="text-lg mt-4 pr-2 italic mb-4">
         Thank you for your order. We will ship your order within 1-2 business days.
       </h4>
@@ -121,19 +121,23 @@ const PaymentSuccess = () => {
         <div className="text-sm mt-4">
           <p>Payment ID: {paymentIntent.id}</p>
           <p>Purchase Date: {paymentIntent.created}</p>
-          <p>Status: {paymentIntent.status}</p>
+          <p>Status: {paymentIntent.latest_charge?.status ? paymentIntent.latest_charge?.status : paymentIntent.status}</p>
           <p>User: {paymentIntent.customer ? paymentIntent.customer : 'Guest'}</p>
           <p>
             Receipt:{' '}
-            <a
-              className="underline hover:text-gray-300"
-              href={paymentIntent.latest_charge.receipt_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Link
-            </a>
-          </p>
+            {paymentIntent.latest_charge?.receipt_url ? 
+              <a
+                className="underline hover:text-gray-300"
+                href={paymentIntent.latest_charge.receipt_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Link
+              </a>
+              
+              : 'Not Available'
+            }
+            </p>
         </div>
       )}
 
