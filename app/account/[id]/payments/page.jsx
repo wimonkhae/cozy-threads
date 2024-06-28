@@ -55,8 +55,6 @@ const Payments = ({ params }) => {
     
                     }
 
-                   
-
                     setPayments(paymentList)
                     console.log(paymentList);
 
@@ -150,6 +148,7 @@ const Payments = ({ params }) => {
                                 )
                             },
                             {label: "Amount", accessor: "amount"},
+                            {label: "Status", accessor: "status"},
                             refundColumn,
 
                         ]}
