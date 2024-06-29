@@ -8,10 +8,9 @@ const Payments = ({ params }) => {
     const [error, setError] = useState(null)
     const [payments, setPayments] = useState([])
 
-    useEffect(() =>{
-       
+    useEffect(() => {
 
-        const retrievePayments = async() =>{
+        const retrievePayments = async() => {
 
             try {
                 const response = await fetch(`/api/payments/${params.id}`)
@@ -34,7 +33,7 @@ const Payments = ({ params }) => {
                         const lineItems = []
                         if (payment.line_items){
                             for(const item of payment.line_items.data){
-                                lineItems.push(`${item.description} (x${item.quantity}) `)
+                                lineItems.push(`${item.description} (x${item.quantity})`)
                             }
                         } else {
                             lineItems.push("N/A")
@@ -56,11 +55,11 @@ const Payments = ({ params }) => {
                     }
 
                     setPayments(paymentList)
-                    console.log(paymentList);
 
-                }else {
+                } else {
                     setError("Error getting payments", await response.json())
                 }
+
             } catch (error) {
                 setError("Error fetching payments", error)
                 
