@@ -44,8 +44,8 @@ const Payments = ({ params }) => {
 
 
                         //status
-                        const chargeStatus = payment.latest_charge.status
-                        const refunded = payment.latest_charge.refunded
+                        const chargeStatus = payment.latest_charge?.status
+                        const refunded = payment.latest_charge?.refunded
     
                         if(refunded){
                             payment.status = "refunded"
