@@ -43,8 +43,8 @@ const Payments = ({ params }) => {
 
 
                         //status
-                        const chargeStatus = payment.latest_charge.status
-                        const refunded = payment.latest_charge.refunded
+                        const chargeStatus = payment.latest_charge?.status
+                        const refunded = payment.latest_charge?.refunded
     
                         if(refunded){
                             payment.status = "refunded"
@@ -134,18 +134,18 @@ const Payments = ({ params }) => {
                         columns={[
                             {label: "ID", accessor: "id"},
                             {label: "Date", accessor: "created"},
-                            {label: "Order Details", accessor: "lineItems",
-                                render: (lineItems) => (
-                                 <div>
-                                       {lineItems.map((item, index)=> (
-                                        <Fragment>
-                                            {item}
-                                            {index < lineItems.length-1 && <br/>}
-                                        </Fragment>
-                                    ))}
-                                 </div>
-                                )
-                            },
+                            // {label: "Order Details", accessor: "lineItems",
+                            //     render: (lineItems) => (
+                            //      <div>
+                            //            {lineItems.map((item, index)=> (
+                            //             <Fragment>
+                            //                 {item}
+                            //                 {index < lineItems.length-1 && <br/>}
+                            //             </Fragment>
+                            //         ))}
+                            //      </div>
+                            //     )
+                            // },
                             {label: "Amount", accessor: "amount"},
                             {label: "Status", accessor: "status"},
                             refundColumn,
